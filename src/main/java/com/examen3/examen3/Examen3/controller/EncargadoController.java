@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping({"/encargado"})
-public class EncargadoFamController {
+public class EncargadoController {
     @Autowired
     private EncargadoService encargadoService;
 
@@ -37,9 +37,9 @@ public class EncargadoFamController {
     }
 
     @PutMapping(value="/{id}")
-    public ResponseEntity<Encargado> update(@PathVariable("id") long id, @RequestBody Encargado contact){
-        contact.setId(id);
-        Optional<Encargado> result = encargadoService.update(contact);
+    public ResponseEntity<Encargado> update(@PathVariable("id") long id, @RequestBody Encargado encargado){
+        encargado.setId(id);
+        Optional<Encargado> result = encargadoService.update(encargado);
         if (result.isPresent()){
             return ResponseEntity.ok().body(result.get());
         }else {

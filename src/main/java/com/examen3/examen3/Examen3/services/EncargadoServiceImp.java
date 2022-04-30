@@ -44,6 +44,11 @@ public class EncargadoServiceImp implements EncargadoService {
 
     @Override
     public boolean delete(Long id) {
+        Optional<Encargado> result = encargadoRepository.findById(id);
+        if (result.isPresent()){
+            encargadoRepository.deleteById(id);
+            return true;
+        }
         return false;
     }
 }

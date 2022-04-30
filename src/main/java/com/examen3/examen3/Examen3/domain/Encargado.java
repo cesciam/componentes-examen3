@@ -1,5 +1,7 @@
 package com.examen3.examen3.Examen3.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -83,5 +85,10 @@ public class Encargado {
 
     public void setTelefonoUno(String telefono_uno) {
         this.telefonoUno = telefono_uno;
+    }
+
+    @JsonIgnore
+    public boolean isNull(){
+        return id == null && nombre == null && cedula == null && direccion == null && telefonoUno == null && telefonoDos == null;
     }
 }
