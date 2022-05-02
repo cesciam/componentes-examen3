@@ -3,7 +3,6 @@ package com.examen3.examen3.Examen3.controller;
 import com.examen3.examen3.Examen3.domain.Hijo;
 import com.examen3.examen3.Examen3.services.HijoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,7 +39,6 @@ public class HijoController {
         }else {
             return ResponseEntity.ok().body(optionalHijo.get());
         }
-
     }
 
     @PutMapping(value="/{id}")

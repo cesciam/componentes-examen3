@@ -3,6 +3,8 @@ package com.examen3.examen3.Examen3.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Hijo {
@@ -19,6 +21,34 @@ public class Hijo {
     @JsonIgnore
     private Encargado encargado;
 
+    @ManyToMany
+    @JoinTable(
+            name = "librosLeidos",
+            joinColumns = @JoinColumn(name = "HIJO_ID"),
+            inverseJoinColumns = @JoinColumn(name = "LIBRO_ID"))
+    private List<Libro> librosLeidos;
+
+    public List<Libro> getLibrosLeidos() {
+        return librosLeidos;
+    }
+
+    public void setLibrosLeidos(List<Libro> librosLeidos) {
+        this.librosLeidos = librosLeidos;
+    }
+
+    public Hijo(Long id, String nombre, boolean guarderia, boolean lectura, String alergias, Long idEncargado, Encargado encargado, List<Libro> librosLeidos) {
+        this.id = id;
+        this.nombre = nombre;
+        this.guarderia = guarderia;
+        this.lectura = lectura;
+        this.alergias = alergias;
+        this.idEncargado = idEncargado;
+        this.encargado = encargado;
+        this.librosLeidos = librosLeidos;
+    }
+
+    public Hijo() {
+    }
     public Long getId() {
         return id;
     }
@@ -43,25 +73,12 @@ public class Hijo {
         this.encargado = encargado;
     }
 
-    public Hijo() {
-    }
-
     public String getAlergias() {
         return alergias;
     }
 
     public void setAlergias(String alergias) {
         this.alergias = alergias;
-    }
-
-    public Hijo(Long id, String nombre, boolean guarderia, boolean lectura, String alergias, Long idEncargado, Encargado encargado) {
-        this.id = id;
-        this.nombre = nombre;
-        this.guarderia = guarderia;
-        this.lectura = lectura;
-        this.alergias = alergias;
-        this.idEncargado = idEncargado;
-        this.encargado = encargado;
     }
 
     public Long getIdEncargado() {

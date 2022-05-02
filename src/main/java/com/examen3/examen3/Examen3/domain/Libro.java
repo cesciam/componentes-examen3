@@ -1,7 +1,10 @@
 package com.examen3.examen3.Examen3.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 
 @Entity
@@ -16,13 +19,27 @@ public class Libro implements Serializable {
     @Column(name = "activo", nullable = false)
     private boolean activo;
 
-
-    public Libro(int id, String nombre) {
-        this.id = id;
-        this.nombre = nombre;
-    }
+    @Column(name = "lectores", nullable = true)
+    @ManyToMany(mappedBy = "librosLeidos")
+    @JsonIgnore
+    private List<Hijo> lectores;
 
     public Libro() {
+    }
+
+    public List<Hijo> getLectores() {
+        return lectores;
+    }
+
+    public void setLectores(List<Hijo> lectores) {
+        this.lectores = lectores;
+    }
+
+    public Libro(int id, String nombre, boolean activo, List<Hijo> lectores) {
+        this.id = id;
+        this.nombre = nombre;
+        this.activo = activo;
+        this.lectores = lectores;
     }
 
     public int getId() {
@@ -41,12 +58,6 @@ public class Libro implements Serializable {
         this.nombre = nombre;
     }
 
-    public Libro(int id, String nombre, boolean activo) {
-        this.id = id;
-        this.nombre = nombre;
-        this.activo = activo;
-    }
-
     public boolean isActivo() {
         return activo;
     }
@@ -54,4 +65,5 @@ public class Libro implements Serializable {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
+
 }

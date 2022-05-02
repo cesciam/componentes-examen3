@@ -50,6 +50,9 @@ public class HijoServiceImp implements HijoService{
             data.setEncargado(data.getEncargado());
             data.setGuarderia(hijo.isGuarderia());
             data.setLectura(hijo.isLectura());
+            if (!hijo.getLibrosLeidos().isEmpty()){
+                data.setLibrosLeidos(hijo.getLibrosLeidos());
+            }
             return Optional.of(hijoRepository.save(data));
         }
         return Optional.empty();
